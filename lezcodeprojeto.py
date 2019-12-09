@@ -7,6 +7,29 @@
 #net worth (yahoo finance)
 from bs4 import BeautifulSoup
 import requests
+import time
+
+
+Perfil1 = input("In a scale from 1-10, how would you say you deal with risk? One being I am literally scared of everything and 10 means you eat fear: ")
+
+if Perfil1 > "6":
+	print("Risk it is")
+else:
+	print("Lets take is slow")
+
+Perfil2 = input("Do you have any preference in market/index?(Y/N)")
+
+if Perfil2 == "Y":
+	input("Select One:")
+else:
+	print("Lets go")
+
+
+
+
+
+
+
 empresa = input("nome da empresa:")
 url1 = f"https://finance.yahoo.com/quote/{empresa}?p={empresa}&.tsrc="
 r = requests.get(url1)
@@ -28,44 +51,39 @@ print(f"open                     =  {opn.text}")
 
 #defining o portifolio
 
-Perfil1 = input("In a scale from 1-10, how would you say you deal with risk? One being I am literally scared of everything and 10 means you eat fear")
 
 Index = ("S&P500, NASDAQ, DOW30, RUSSEL2000")
 
-if Perfil1 > "6":
-	print("Risk it is")
+
+print("Give us a moment to analyse...")
+print()
+time.sleep(2)
+
+
+if float(beta.text) > 1:
+	print("Your stock is High Volatile")
 else:
-	print("Lets take is slow")
+	print("Your stock is stable")
 
-Perfil2 = input("Do you have any preference in market/index?(Y/N)")
-if Perfil2 == "Y":
-	input("Select One:")
+time.sleep(3)
+print()
+
+if float(PE.text) > 25:
+	print("Your stock has a favourable Price to Earnings Ratio")
 else:
-	print("Lets go")
+	print("Your Stock has a low/medium Price to Earnings Ratio")
 
 
-if beta >"1":
-	print("High Risk High Reward")
+time.sleep(3)
+print()
+
+if float(div.text) > 1:
+	print("Your stock has a good dividend yield")
 else:
-	print("Slow and Steady")
-
-if PE > "25":
-	print("Favouralbe Ratio")
-else:
-	print("Lets look for something else...")
-
-if div > "1.8":
-	print("good dividend yield")
-else:
-	print("would be intresting to look for something else")
+	print("Your stock has a low dividend yield")
 
 
 
 
-
-
-HIGHRISK = (High Beta, Low PE, Average - Low Divdend)
-LOWRISKS = (Low Beta, High PE, High Dividend)
-
-
-
+#HIGHRISK = (High Beta, Low PE, Average - Low Divdend)
+#LOWRISKS = (Low Beta, High PE, High Dividend)
